@@ -1,15 +1,12 @@
 package main
 
-import "fmt"
-
-type person struct {
-	name    string
-	age     int
-	favFood []string
-}
+import (
+	"github.com/honeypot92/learngo/mydict"
+)
 
 func main() {
-	favFood := []string{"doe", "eho"}
-	hj := person{name: "hyunjun", age: 29, favFood: favFood}
-	fmt.Println(hj)
+	dictionary := mydict.Dictionary{}
+	dictionary.Add("first", "first word")
+	dictionary.Update("fist", "new definition")
+
 }
