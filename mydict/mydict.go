@@ -8,7 +8,8 @@ type Dictionary map[string]string
 var (
 	errNotFound   = errors.New("Not Found")
 	errWordExists = errors.New("Word already exists")
-	errCantUpdate = errors.New("Word dont exist for update")
+
+//	errCantUpdate = errors.New("Word dont exist for update")
 )
 
 // Search for a word

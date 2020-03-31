@@ -42,6 +42,7 @@ func writeJobs(jobs []extractedJob) {
 	file, err := os.Create("jobs.csv")
 	checkErr(err)
 
+	//	c := make(chan []string)
 	w := csv.NewWriter(file)
 	defer w.Flush()
 
@@ -49,12 +50,22 @@ func writeJobs(jobs []extractedJob) {
 	wErr := w.Write(headers)
 	checkErr(wErr)
 
+	//	for _, job := range jobs {
+	//	go writeJob(job, c)
+	//}
+	//	for i := 0; i < len(jobs); i++ {
 	for _, job := range jobs {
 		jobSlice := []string{"https://kr.indeed.com/viewjob?jk=" + job.id, job.title, job.location, job.salary, job.summary}
+		// jobSlice := <-c
 		jwErr := w.Write(jobSlice)
 		checkErr(jwErr)
 	}
 }
+
+// func writeJob(job extractedJob, c chan<- []string) {
+// 	jobSlice := []string{"https://kr.indeed.com/viewjob?jk=" + job.id, job.title, job.location, job.salary, job.summary}
+// 	c <- jobSlice
+// }
 
 func getPage(page int, mainC chan<- []extractedJob) {
 	var jobs []extractedJob
